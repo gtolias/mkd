@@ -2,7 +2,7 @@
 
 This is a Matlab package that implements the kernel local descriptor presented in "Multiple-Kernel Local-Patch Descriptor" at BMVC 2017 <https://arxiv.org/pdf/1707.07825.pdf>. 
 
-<img src="http://cmp.felk.cvut.cz/~toliageo/images/thumbs/mkld.png" height="250"/>
+</span><img src="http://cmp.felk.cvut.cz/~toliageo/images/thumbs/mkld.png" height="200"/>
 
 ## What is it?
 This code implements:
