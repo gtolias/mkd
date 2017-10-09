@@ -1,10 +1,7 @@
-% Code for the method presented in the paper 
-% A. Bursuc, G. Tolias, and H. Jegou, ICMR 2015, Kernel Local Descriptors with Implicit Rotation Matching
-% This version of the code includes minor bug fixes and produces slightly better performance than in our paper
-%
-% Authors: A. Bursuc, G. Tolias, H. Jegou. 2015. 
-%
-% script to extract descriptors and evaluate on the Brown dataset
+
+% edited version of https://github.com/abursuc/kde
+% 
+% script to extract descriptors, learn whitening and evaluate on the Photo-tourism dataset
 %
 % Modified for Multiple-Kernel Local-Patch Descriptor, BMVC 20107
 % Authors: A. Mukundan, G. Tolias, O. Chum, 2017
