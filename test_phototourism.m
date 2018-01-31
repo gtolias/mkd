@@ -8,20 +8,19 @@
 
 addpath(genpath('./'));
 
-% pfolder 		=  '/data/patches/';    % brown dataset folder
-pfolder 		=  '/mnt/lascar/toliageo/tmp/mkd/';    % brown dataset folder
+pfolder 		=  '/data/patches/';    % brown dataset folder
 ofolder 		=  pfolder;				  % output folder
-s 				=  64;   % patch size
-kapparho 	=  8;		% kappa for kernel on rho (radius in polar coordinates)
+s 					=  64;   % patch size
+kapparho 		=  8;		% kappa for kernel on rho (radius in polar coordinates)
 kappaphi		=	8;		% kappa for kernel on phi (angle in polar coordinates)
 kappatheta	=	8;		% kappa for kernel on theta (relative gradient angle)
-nrho 			=  2;		% number of frequencies for approx. of kernel on rho  
+nrho 			= 2;		% number of frequencies for approx. of kernel on rho  
 nphi			=	2;		% number of frequencies for approx. of kernel on phi
 ntheta		=	3;		% number of frequencies for approx. of kernel on theta
 
 kappaxy 		=  1; 	% similarly for the Cartesian case
 kappatheta2 =  8;	   % similarly for the Cartesian case
-nxy 			=  1;	   % similarly for the Cartesian case
+nxy 				=  1;	   % similarly for the Cartesian case
 ntheta2 		=  3;    % similarly for the Cartesian case
 
 % coefficients for the individual embeddings
@@ -77,14 +76,14 @@ fprintf('Evaluating.\n')
 % evaluate each dataset with Lw variants
 for d = 1:numel(datasets)
   dataset = datasets{d};
-    pairs = load(sprintf('%s/%s/m50_100000_100000_0.txt',pfolder, dataset));
-    for i = 1:numel(L)
-    	if d == i, continue; end
-      for dim = [128]
-        v = whitenapply(vecs{d}, L{i}.m, L{i}.P, dim);
-        res = eval_brown (v, pairs);
-        fprintf('%10s MKD  %3dD whitening learned on %10s : fpr95 = %.4f\n', dataset, dim, L{i}.trainset, res.fpr_95);
-      end
+  pairs = load(sprintf('%s/%s/m50_100000_100000_0.txt',pfolder, dataset));
+  for i = 1:numel(L)
+  	if d == i, continue; end
+    for dim = [128]
+      v = whitenapply(vecs{d}, L{i}.m, L{i}.P, dim);
+      res = eval_brown (v, pairs);
+      fprintf('%10s MKD  %3dD whitening learned on %10s : fpr95 = %.4f\n', dataset, dim, L{i}.trainset, res.fpr_95);
+    end
   end
 end
 
