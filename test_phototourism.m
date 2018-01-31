@@ -11,7 +11,8 @@
 
 addpath(genpath('./'));
 
-pfolder 		=  '/data/patches/';    % brown dataset folder
+% pfolder 		=  '/data/patches/';    % brown dataset folder
+pfolder 		=  '/mnt/lascar/toliageo/tmp/mkd/';    % brown dataset folder
 ofolder 		=  pfolder;				  % output folder
 s 				=  64;   % patch size
 kapparho 	=  8;		% kappa for kernel on rho (radius in polar coordinates)
@@ -66,14 +67,14 @@ for d = 1:numel(datasets)
 end
 
 fprintf('Learning the whitening.\n')
-	L = {};
-	for d = 1:numel(datasets)
-	  dataset = datasets{d};
-	  pairs = load(sprintf('%s/%s/m50_500000_500000_0.txt',pfolder, dataset));
-	  pos = find(pairs(:, 2)==pairs(:, 5));
-	  L{end+1} = whitenlearn(vecs{d}, pairs(pos, 1)+1, pairs(pos, 4)+1);
-	  L{end}.trainset = dataset;
-	end
+L = {};
+for d = 1:numel(datasets)
+  dataset = datasets{d};
+  pairs = load(sprintf('%s/%s/m50_500000_500000_0.txt',pfolder, dataset));
+  pos = find(pairs(:, 2)==pairs(:, 5));
+  L{end+1} = whitenlearn(vecs{d}, pairs(pos, 1)+1, pairs(pos, 4)+1);
+  L{end}.trainset = dataset;
+end
 
 fprintf('Evaluating.\n')
 % evaluate each dataset with Lw variants
@@ -97,4 +98,5 @@ cmkd.kappaxy = kappaxy; cmkd.kappatheta2 = kappatheta2;
 cmkd.nxy = nxy; cmkd.ntheta2	= ntheta2; 
 cmkd.crho = crho; cmkd.cphi = cphi; cmkd.ctheta = ctheta; cmkd.cxy = cxy; cmkd.ctheta2 = ctheta2;
 cmkd.prepolar = prepolar; cmkd.precart = precart;
+cmkd.D = 128; 
 for d = 1:numel(datasets), cmkd.lw = L{d}; save(sprintf('%s/mkd_%s.mat', ofolder, datasets{d}), 'cmkd'); end

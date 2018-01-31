@@ -11,4 +11,4 @@
 function v = mkdw(patch, prm)
 
 	v = vecpostproc([mkd(patch, prm.prepolar, prm.ctheta, 1); mkd(patch, prm.precart, prm.ctheta2, 0)]);
-	v = whitenapply(v, prm.lw.m, prm.lw.P); 
+	v = whitenapply(v, prm.lw.m, prm.lw.P, prm.D); 
